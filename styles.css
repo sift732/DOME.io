@@ -1,0 +1,346 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    flex-wrap: wrap; /* 子要素を折り返し可能にする */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px; /* PC表示時のフォントサイズ */
+    text-align: center;
+    flex: 1;
+    transform: translateX(-3%);
+    /* モバイル表示用に中央に配置するための設定 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.header-left, .header-controls {
+    /* 必要に応じて設定を調整 */
+    margin: 0;
+    padding: 0;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px; /* モバイル用に調整 */
+}
+
+.header-left a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px; /* スペースの調整 */
+}
+
+.header-left a:hover {
+    text-decoration: underline;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+}
+
+.menu-container {
+    position: relative;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.menu-icon {
+    background-color: #282c34; /* メニューアイコンの背景色 */
+    color: white;
+    padding: 16px;
+    font-size: 24px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    width: 50px; /* 正方形の幅 */
+    height: 50px; /* 正方形の高さ */
+    text-align: center;
+    line-height: 50px; /* テキストを垂直に中央揃え */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-left: 10px; /* スイッチとの間隔 */
+}
+
+.menu-icon:hover, .menu-icon:focus {
+    background-color: #414b61; /* ホバー時の背景色 */
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    min-width: 160px;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    border-bottom: 1px solid #ddd;
+}
+
+.menu ul li:last-child {
+    border-bottom: none;
+}
+
+.menu ul li a {
+    display: block;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+.menu ul li a:hover {
+    background-color: #f1f1f1;
+    border-radius: 12px;
+}
+
+.menu-toggle:checked + .menu-icon + .menu {
+    display: block;
+}
+
+/* Toggle switch styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px; /* スイッチの幅を小さくする */
+    height: 24px; /* スイッチの高さを小さくする */
+    margin-left: 10px; /* メニューアイコンとの間隔 */
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px; /* スイッチのボールのサイズを小さくする */
+    width: 16px; /* スイッチのボールのサイズを小さくする */
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(16px); /* スイッチのボールの移動距離を調整 */
+}
+
+.dark-mode {
+    background-color: #121212; /* ダークテーマの背景色 */
+    color: #e0e0e0; /* ダークテーマの文字色 */
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.center-content {
+    text-align: center;
+}
+
+button {
+    background-color: #4CAF50; /* ボタンの背景色 */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+button:hover {
+    background-color: #45a049; /* ホバー時の色 */
+}
+
+footer {
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .menu-container {
+        top: 10px; /* タブレット用に調整 */
+    }
+
+    .menu-icon {
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .menu ul li a {
+        padding: 10px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header h1 {
+        font-size: 20px; /* スマホ表示時のフォントサイズ */
+    }
+
+    .header-left {
+        margin-bottom: 10px; /* ヘッダー下部のスペース調整 */
+    }
+
+    .switch {
+        width: 30px; /* スイッチの幅をさらに小さくする */
+        height: 20px; /* スイッチの高さをさらに小さくする */
+    }
+
+    .slider:before {
+        height: 14px; /* スイッチのボールのサイズをさらに小さくする */
+        width: 14px; /* スイッチのボールのサイズをさらに小さくする */
+    }
+
+    .header-controls {
+        margin-top: 10px; /* ヘッダー内のスペース調整 */
+    }
+
+    .menu-container {
+        top: 10px; /* スマホ用に調整 */
+    }
+}
+
+.fade {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.dark-mode .command-detail {
+    background-color: #1e1e1e; /* ダークテーマのコマンド詳細背景色 */
+    color: #e0e0e0; /* ダークテーマの文字色 */
+}
+
+.dark-mode .command-example {
+    background-color: #333333; /* ダークテーマのコマンド例背景色 */
+    color: #e0e0e0; /* ダークテーマのコマンド例文字色 */
+}
+
+.dark-mode .note {
+    background-color: #444c5c; /* ダークテーマの注意背景色 */
+    border: 1px solid #2b3444; /* ダークテーマの注意ボーダー色 */
+    color: #e0e0e0; /* ダークテーマの注意文字色 */
+}
+
+/* ダークテーマでのコマンド部分が正しく表示されるようにする */
+.command-detail {
+    padding: 20px;
+    background-color: #ffffff; /* デフォルトの背景色 */
+    color: #000000; /* デフォルトの文字色 */
+}
+
+.command-header {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.command-description {
+    margin-bottom: 20px;
+}
+
+.command-example {
+    background-color: #f1f1f1; /* デフォルトの背景色 */
+    padding: 10px;
+    border-left: 4px solid #1a73e8;
+    margin-bottom: 20px;
+    font-family: monospace;
+}
+
+.command-info {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.note {
+    background-color: #fff3cd; /* デフォルトの背景色 */
+    border: 1px solid #ffeeba;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+body.dark-mode .feature-box {
+    background-color: #f4f4f4; /* ダークモード時の背景色 */
+}
+
+/* ホワイトテーマのスタイル */
+body:not(.dark-mode) .feature-box {
+    background-color: #707070; /* ホワイトテーマ時の背景色（鼠色） */
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/add_queue コマンド - DOME-BOT</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- 親ディレクトリの styles.css をリンク -->
+    <style>
+        /* addqueue.html 専用のスタイル */
+        .command-detail {
+            padding: 20px;
+        }
+
+        .command-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .command-description {
+            margin-bottom: 20px;
+        }
+
+        .command-example {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-left: 4px solid #1a73e8;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+
+        .command-info {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        /* ダークテーマ用のスタイル */
+        .dark-mode .command-detail {
+            background-color: #1e1e1e; /* ダークテーマのコマンド詳細背景色 */
+            color: #e0e0e0; /* ダークテーマの文字色 */
+        }
+
+        .dark-mode .command-example {
+            background-color: #333333; /* ダークテーマのコマンド例背景色 */
+            color: #e0e0e0; /* ダークテーマのコマンド例文字色 */
+        }
+
+        .dark-mode .note {
+            background-color: #444c5c; /* ダークテーマの注意背景色 */
+            border: 1px solid #2b3444; /* ダークテーマの注意ボーダー色 */
+            color: #e0e0e0; /* ダークテーマの注意文字色 */
+        }
+
+        /* テーブルのスタイル */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="command-detail">
+        <div class="command-header">/music_addqueue</div>
+        <div class="command-description">
+            `/music_addqueue` コマンドは、指定した音楽トラックを再生キューに追加するためのコマンドです。このコマンドを使用することで、指定された曲が現在再生中の音楽が終わった後に再生されるようにキューに追加されます。
+        </div>
+
+        <div class="command-info">
+            <strong>使い方</strong>
+            <div class="command-example">
+                /music_addqueue [曲名またはURL] (Discord上ではリクエストと表示)
+            </div>
+            コマンドを実行すると、指定した音楽トラックがキューに追加されます。現在再生中のトラックがある場合、その後に再生されます。
+        </div>
+
+        <div class="note">
+            <strong>注意：</strong> BOTがボイスチャンネルに参加している必要があります。また、再生中のトラックがある場合は、指定した曲がその後に再生されます。
+        </div>
+
+        <div class="command-info">
+            <strong>例</strong>
+            <div class="command-example">
+                /music_addqueue https://www.youtube.com/watch?v=dQw4w9WgXcQ
+            </div>
+            上記の例では、指定されたYouTubeのトラックがキューに追加されます。
+        </div>
+    </div>
+</body>
+</html>

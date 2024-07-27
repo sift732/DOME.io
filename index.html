@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOME-BOT</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Fade animation for content transitions */
+        .fade {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .fade.in {
+            opacity: 1;
+        }
+
+        /* Add additional styles if needed */
+        .center-content {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .center-content button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .center-content button:hover {
+            background-color: #0056b3;
+        }
+
+        .header-title {
+            text-align: center;
+            cursor: pointer;
+            font-size: 2em;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .header-title:hover {
+            color: #007bff;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode .header-title {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glowing effect */
+        }
+
+        /* Light mode styles */
+        body:not(.dark-mode) .header-title {
+            color: #000;
+        }
+
+        .header-title:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="index.html?section=terms">利用規約</a>
+            <a href="index.html?section=policy">プライバシーポリシー</a>
+        </div>
+        <a href="index.html" class="header-title">DOME-BOT</a>
+        <div class="header-controls">
+            <label class="switch">
+                <input type="checkbox" id="mode-toggle">
+                <span class="slider"></span>
+            </label>
+            <div class="menu-container">
+                <input type="checkbox" class="menu-toggle" id="menu-toggle">
+                <label for="menu-toggle" class="menu-icon">
+                    &#9776;
+                </label>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="index.html?section=commands">コマンド</a></li>
+                        <li><a href="index.html?section=support">サポート</a></li>
+                        <li><a href="index.html?section=contact">コンタクト</a></li>
+                        <li><a href="index.html?section=spec">スペック</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="fade">
+        <!-- コンテンツがここに読み込まれる -->
+    </main>
+
+    <footer>
+        <p>&copy; 2024 sift732 All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.getElementById('main-content');
+            const urlParams = new URLSearchParams(window.location.search);
+            const section = urlParams.get('section');
+
+            function loadContent(content) {
+                mainContent.classList.remove('in'); // まずはフェードアウト
+                setTimeout(() => {
+                    mainContent.innerHTML = content;
+                    mainContent.classList.add('in'); // 新しい内容をフェードイン
+                }, 500); // アニメーションの時間と一致させる
+            }
+
+            function fetchContent(urls) {
+                const fetchPromises = urls.map(url => 
+                    fetch(url).then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                );
+
+                return Promise.any(fetchPromises);
+            }
+
+            const commonSections = [
+                'play', 'pause', 'repause', 'skip', 'queue', 'now', 'add_queue', 'leave',
+                'music_loop', 'operation', 'volume', 'clear', 'info', 'avatar', 'count',
+                'slow', 'unslow', 'top', 'userinfo', 'weathermain', 'weatherother', 'job',
+                'moneynow', 'average'
+            ];
+
+            if (section) {
+                if (commonSections.includes(section)) {
+                    fetchContent([
+                        `commands/${section}.html`,
+                        `server/${section}.html`,
+                        `convenience/${section}.html`,
+                        `money/${section}.html`
+                    ])
+                    .then(data => loadContent(data))
+                    .catch(error => {
+                        console.error('Error loading content:', error);
+                        loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                    });
+                } else {
+                    switch (section) {
+                        case 'commands':
+                            fetch('menu/command.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                        case 'support':
+                            fetch('support/support.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                        case 'contact':
+                            fetch('contact.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                        case 'terms':
+                            fetch('home/terms.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                        case 'policy':
+                            fetch('home/policy.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                            case 'spec':
+                            fetch('home/spec.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;               
+                        default:
+                            // ホームの場合は「導入する」ボタンを表示
+                            loadContent(`
+                                <div class="center-content">
+                                    <button onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1264166436612472832&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.gg%2FmWBwH2yyAF&integration_type=0&scope=guilds.join+bot+applications.commands';">導入する</button>
+                                </div>
+                            `);
+                    }
+                }
+            } else {
+                // `section` がない場合もホームページを表示する
+                loadContent(`
+                    <div class="center-content">
+                        <button onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1264166436612472832&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.gg%2FmWBwH2yyAF&integration_type=0&scope=guilds.join+bot+applications.commands';">導入する</button>
+                    </div>
+                `);
+            }
+        });
+
+        const toggle = document.getElementById('mode-toggle');
+        const body = document.body;
+        
+        // Initialize theme based on localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        // Toggle theme and save to localStorage
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>

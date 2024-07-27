@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/music_loop コマンド - DOME-BOT</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- 親ディレクトリの styles.css をリンク -->
+    <style>
+        /* loop.html 専用のスタイル */
+        .command-detail {
+            padding: 20px;
+        }
+
+        .command-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .command-description {
+            margin-bottom: 20px;
+        }
+
+        .command-example {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-left: 4px solid #1a73e8;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+
+        .command-info {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        /* ダークテーマ用のスタイル */
+        .dark-mode .command-detail {
+            background-color: #1e1e1e; /* ダークテーマのコマンド詳細背景色 */
+            color: #e0e0e0; /* ダークテーマの文字色 */
+        }
+
+        .dark-mode .command-example {
+            background-color: #333333; /* ダークテーマのコマンド例背景色 */
+            color: #e0e0e0; /* ダークテーマのコマンド例文字色 */
+        }
+
+        .dark-mode .note {
+            background-color: #444c5c; /* ダークテーマの注意背景色 */
+            border: 1px solid #2b3444; /* ダークテーマの注意ボーダー色 */
+            color: #e0e0e0; /* ダークテーマの注意文字色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="command-detail">
+        <div class="command-header">/music_loop</div>
+        <div class="command-description">
+            `/music_loop` コマンドは、現在再生中のトラックのループ設定を管理するためのコマンドです。このコマンドを使用することで、音楽のループを有効にしたり無効にしたりできます。
+        </div>
+
+        <div class="command-info">
+            <strong>使い方</strong>
+            <div class="command-example">
+                /music_loop [有効 , 無効 , 状態]
+            </div>
+            <div>
+                - `有効`: 音楽のループを有効にします。<br>
+                - `無効`: 音楽のループを無効にします。<br>
+                - `状態`: 現在のループ設定の状態を確認します。
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>注意：</strong> 音楽が再生中でないと、ループ設定は適用されません。また、ループを有効にした状態で再度 `有効` にするとエラーが表示され、逆も同様です。
+        </div>
+
+        <div class="command-info">
+            <strong>例</strong>
+            <div class="command-example">
+                /music_loop [有効 , 無効]
+            </div>
+            上記の例では、現在再生中の音楽のループが有効になります。
+            また無効の場合は音楽のループが無効になります
+        </div>
+
+        <div class="command-info">
+            <strong>ループ状況</strong>
+            <div class="command-example">
+                /music_loop [状態]
+            </div>
+            上記の例では、現在のループ設定の状態を確認できます。ループが有効か無効かが表示されます。
+        </div>
+    </div>
+</body>
+</html>

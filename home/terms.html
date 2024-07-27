@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利用規約 - DOME-BOT</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- 親ディレクトリの styles.css をリンク -->
+    <style>
+        /* 共通のスタイル */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .content {
+            margin: 20px;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .section {
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #333; /* フレームの基本色 */
+            margin-bottom: 30px; /* 各セクション間の間隔 */
+        }
+
+        .section h2 {
+            margin-top: 0;
+        }
+
+        .content h1 {
+            font-size: 1.5em;
+            color: #000000; /* デフォルトは黒 */
+        }
+
+        .section p {
+            line-height: 1.6;
+        }
+
+        .section ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        /* ダークテーマ用のスタイル */
+        .dark-mode .section {
+            background-color: #1e1e1e; /* ダークテーマの背景色 */
+            color: #e0e0e0; /* ダークテーマの文字色 */
+            border-color: #6e6e6e; /* ダークテーマのフレーム色 */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* フレームの光り具合 */
+        }
+
+        .dark-mode .content h1 {
+            color: #ffffff; /* ダークテーマのタイトル文字色 */
+        }
+
+        .dark-mode .section p {
+            color: #e0e0e0; /* ダークテーマの段落文字色 */
+        }
+
+        .dark-mode .section ul {
+            color: #e0e0e0; /* ダークテーマのリスト文字色 */
+        }
+
+        /* ホワイトモード用のスタイル */
+        .light-mode .section {
+            background-color: #ffffff; /* ホワイトテーマの背景色 */
+            color: #333333; /* ホワイトテーマの文字色 */
+            border-color: #333; /* ホワイトテーマのフレーム色 */
+        }
+
+        .light-mode .content h1 {
+            color: #000000; /* ホワイトテーマのタイトル文字色 */
+        }
+
+        .light-mode .section p {
+            color: #333333; /* ホワイトテーマの段落文字色 */
+        }
+
+        .light-mode .section ul {
+            color: #333333; /* ホワイトテーマのリスト文字色 */
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <div class="content">
+            <h1>利用規約</h1>
+            <div class="section">
+                <h2>第1条（適用）</h2>
+                <p><br>・本規約は、ユーザーとの間の本サービスの利用に関わる一切の関係に適用されるものとします。</br></p>
+            </div>
+
+            <div class="section">
+                <h2>第2条（サービスの内容）</h2>
+                <p>本サービスは、DiscordのBOT機能を提供するものであり、音楽の再生、コマンドの実行、サーバー管理など、様々な機能を含みます。</p>
+            </div>
+
+            <div class="section">
+                <h2>第3条（禁止事項）</h2>
+                <p>ユーザーは、以下の行為を行ってはなりません。</p>
+                <ul>
+                    <li>BOTを使用した荒らし行為</li>
+                    <li>当社または第三者の権利を侵害する行為</li>
+                    <li>本サービスの運営を妨げる行為</li>
+                    <li>虚偽の情報を提供する行為</li>
+                    <li>その他当社が不適切と判断する行為</li>
+                    <li>BOTに対して不正アクセスや試みる行為</li>
+                    <li>サーバーに対して大きな負荷をかける行為</li>
+                    <li>本サービスで許可のない宣伝、広告等</li>
+                    <li>犯罪行為に関連する行為</li>
+                </ul>
+                <br>禁止事項に違反した場合ブラックリストに入れられる可能性があります
+            </div>
+
+            <div class="section">
+                <h2>第4条（サービスの変更・停止）</h2>
+                <p>事前の通知なく、本サービスの内容を変更、追加、または削除やは停止することがあります。ユーザーは、これに対して一切の異議を唱えないものとします。
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>第5条（規約の変更）</h2>
+                <p>当社は、本規約の内容を随時変更やお知らせのなく利用規約等を変更することがあります。変更後の規約は、本サービス上に掲示された時点で利用規約に同意したとします。</p>
+            </div>
+
+            <div class="section">
+                <h2>第6条（サービスの停止例）</h2>
+                <p>ホストサーバーの点検</p>
+                <p>災害等で提供が困難の場合</p>
+                <p>通信回線等で不慮の事故等</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ダークモードのトグルスイッチの状態を管理する
+        const toggle = document.getElementById('mode-toggle');
+        const body = document.body;
+
+        // Initialize theme based on localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        } else {
+            body.classList.add('light-mode');
+        }
+
+        // Toggle theme and save to localStorage
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.add('light-mode');
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>

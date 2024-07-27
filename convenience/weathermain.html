@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/weather コマンド - DOME-BOT</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- 親ディレクトリの styles.css をリンク -->
+    <style>
+        /* weathermain.html 専用のスタイル */
+        .command-detail {
+            padding: 20px;
+        }
+
+        .command-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .command-description {
+            margin-bottom: 20px;
+        }
+
+        .command-example {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-left: 4px solid #1a73e8;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+
+        .command-info {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        /* テーブルのスタイル */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* ダークテーマ用のスタイル */
+        .dark-mode .command-detail {
+            background-color: #1e1e1e; /* ダークテーマのコマンド詳細背景色 */
+            color: #e0e0e0; /* ダークテーマの文字色 */
+        }
+
+        .dark-mode .command-example {
+            background-color: #333333; /* ダークテーマのコマンド例背景色 */
+            color: #e0e0e0; /* ダークテーマのコマンド例文字色 */
+        }
+
+        .dark-mode .note {
+            background-color: #444c5c; /* ダークテーマの注意背景色 */
+            border: 1px solid #2b3444; /* ダークテーマの注意ボーダー色 */
+            color: #e0e0e0; /* ダークテーマの注意文字色 */
+        }
+
+        .dark-mode th {
+            background-color: #333333; /* ダークテーマのテーブルヘッダー背景色 */
+            color: #e0e0e0; /* ダークテーマのテーブルヘッダー文字色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="command-detail">
+        <div class="command-header">/weather main</div>
+        <div class="command-description">
+            `/weather main` コマンドは、指定した場所の天気情報を表示します。このコマンドを使うことで、指定された場所の現在の天気、気温、湿度などの情報を確認できます。
+        </div>
+
+        <div class="command-info">
+            <strong>使い方</strong>
+            <div class="command-example">
+                /weather main [場所]
+            </div>
+            `場所` には、都道府県名を指定します。指定された場所の天気情報が表示されます。
+        </div>
+
+        <div class="note">
+            <strong>注意：</strong>県で指定なので大雑把になりますがそこはご了承お願いします
+        </div>
+
+        <div class="command-info">
+            <strong>例</strong>
+            <div class="command-example">
+                /weather main 東京
+            </div>
+            上記の例では、`東京` の天気情報が表示されます。
+            <br>
+            <div class="command-example">
+                /weather main 北海道
+            </div>
+            上記の例では、`北海道` の天気情報が表示されます。
+        </div>
+
+        <div class="command-info">
+            <strong>天気情報</strong>
+            <table>
+                <thead>
+                    <tr>
+                        <th>項目</th>
+                        <th>内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>場所</td>
+                        <td>指定された場所の名前が表示されます</td>
+                    </tr>
+                    <tr>
+                        <td>天気</td>
+                        <td>現在の天気（晴れ、曇り、雨など）が表示されます</td>
+                    </tr>
+                    <tr>
+                        <td>気温</td>
+                        <td>現在の気温が表示されます</td>
+                    </tr>
+                    <tr>
+                        <td>湿度</td>
+                        <td>現在の湿度が表示されます</td>
+                    </tr>
+                    <tr>
+                        <td>風速</td>
+                        <td>現在の風速が表示されます</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 対応場所のテーブル -->
+        <div class="command-info">
+            <strong>/weather main 対応場所</strong>
+            <table>
+                <thead>
+                    <tr>
+                        <th>場所</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>北海道</td></tr>
+                    <tr><td>青森</td></tr>
+                    <tr><td>岩手</td></tr>
+                    <tr><td>宮城</td></tr>
+                    <tr><td>秋田</td></tr>
+                    <tr><td>山形</td></tr>
+                    <tr><td>福島</td></tr>
+                    <tr><td>茨城</td></tr>
+                    <tr><td>栃木</td></tr>
+                    <tr><td>群馬</td></tr>
+                    <tr><td>埼玉</td></tr>
+                    <tr><td>千葉</td></tr>
+                    <tr><td>東京</td></tr>
+                    <tr><td>神奈</td></tr>
+                    <tr><td>新潟</td></tr>
+                    <tr><td>富山</td></tr>
+                    <tr><td>石川</td></tr>
+                    <tr><td>福井</td></tr>
+                    <tr><td>長野</td></tr>
+                    <tr><td>岐阜</td></tr>
+                    <tr><td>静岡</td></tr>
+                    <tr><td>愛知</td></tr>
+                    <tr><td>三重</td></tr>
+                    <tr><td>滋賀</td></tr>
+                    <tr><td>京都</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

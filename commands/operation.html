@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/operation コマンド - DOME-BOT</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- 親ディレクトリの styles.css をリンク -->
+    <style>
+        /* operation.html 専用のスタイル */
+        .command-detail {
+            padding: 20px;
+        }
+
+        .command-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .command-description {
+            margin-bottom: 20px;
+        }
+
+        .command-example {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-left: 4px solid #1a73e8;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+
+        .command-info {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        /* ダークテーマ用のスタイル */
+        .dark-mode .command-detail {
+            background-color: #1e1e1e; /* ダークテーマのコマンド詳細背景色 */
+            color: #e0e0e0; /* ダークテーマの文字色 */
+        }
+
+        .dark-mode .command-example {
+            background-color: #333333; /* ダークテーマのコマンド例背景色 */
+            color: #e0e0e0; /* ダークテーマのコマンド例文字色 */
+        }
+
+        .dark-mode .note {
+            background-color: #444c5c; /* ダークテーマの注意背景色 */
+            border: 1px solid #2b3444; /* ダークテーマの注意ボーダー色 */
+            color: #e0e0e0; /* ダークテーマの注意文字色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="command-detail">
+        <div class="command-header">/music_operation</div>
+        <div class="command-description">
+            `/music_operation` コマンドは、現在再生中の音楽の再生位置を指定した時間にスキップするためのコマンドです。このコマンドを使用することで、音楽の任意の位置にシークできます。
+        </div>
+
+        <div class="command-info">
+            <strong>使い方:</strong>
+            <div class="command-example">
+                /music_operation [hh:mm:ss , mm:ss , ss]
+            </div>
+            <div>
+                指定する時間の形式は以下のいずれかです:<br>
+                - `hh:mm:ss`: 時間:分:秒<br>
+                - `mm:ss`: 分:秒<br>
+                - `ss`: 秒
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>注意：</strong> 指定した時間がトラックの長さを超えている場合、エラーが表示されます。また、トラックが再生中でないと、時間指定は適用されません。
+        </div>
+
+        <div class="command-info">
+            <strong>例</strong>
+            <div class="command-example">
+                /music_operation 02:30
+            </div>
+            上記の例では、現在再生中のトラックの再生位置を2分30秒にスキップします。
+        </div>
+
+        <div class="command-info">
+            <strong>エラー例</strong>
+            <div class="command-example">
+                /operation 100:00
+            </div>
+            上記の例では、トラックの長さを超えた時間指定が行われるため、エラーが表示されます。
+        </div>
+    </div>
+</body>
+</html>
