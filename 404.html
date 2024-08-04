@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja" class="light-mode"> <!-- 初期はライトモード -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - ページが見つかりません</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- 親ディレクトリの styles.css をリンク -->
+    <style>
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s; /* 背景色のトランジションを追加 */
+        }
+        .container h1 {
+            font-size: 2em;
+            margin: 0;
+            color: #ff6f6f; /* エラーメッセージに目立つ色を設定 */
+        }
+        .container p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .container a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            padding: 10px 20px;
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container a:hover {
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+        }
+        /* ダークモード時のスタイル */
+        body.dark-mode .container {
+            background-color: #444; /* ダークモード時の背景色を灰色に設定 */
+            color: #fff; /* テキスト色を白に設定 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404 - ページが見つかりません</h1>
+        <p>申し訳ありませんが、指定されたページは存在しません。</p>
+        <p><a href="index.html">ホームページに戻る</a></p>
+    </div>
+</body>
+</html>

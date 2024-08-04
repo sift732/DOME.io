@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コマンドリスト - DOME-BOT</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .command-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .command-box {
+            width: 300px;
+            min-height: 200px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s, background-color 0.3s, color 0.3s;
+            box-sizing: border-box;
+        }
+
+        body:not(.dark-mode) .command-box {
+            border: 3px solid #6c757d;
+            color: #333;
+        }
+
+        body.dark-mode .command-box {
+            border: 3px solid #fff;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .command-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .command-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .command-list li {
+            margin: 10px 0;
+            line-height: 1.5;
+            font-size: 1em;
+        }
+
+        .command-list li a {
+            text-decoration: none;
+            color: #1a73e8;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .command-list li a:hover {
+            text-decoration: underline;
+        }
+
+        body.dark-mode .command-list li a {
+            color: #19a6d1;
+        }
+
+        @media (max-width: 768px) {
+            .command-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .command-box {
+                width: 100%;
+            }
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            width: 250px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #1a73e8;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-button:hover {
+            background-color: #1558d6;
+        }
+
+        .fade-in {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+
+        .searching-message {
+            display: none;
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="search-box" class="search-box" placeholder="コマンドを検索...">
+        <button class="search-button" onclick="performSearch()">検索</button>
+    </div>
+    <div id="searching-message" class="searching-message">検索中...</div>
+    <div id="command-content" class="command-container">
+        <div class="command-box" data-section="play">
+            <div class="command-header">音楽</div>
+            <ul class="command-list">
+                <li><a href="index.html?section=play">/music_play</a> - 音楽を再生します。</li>
+                <li><a href="index.html?section=skip">/music_skip</a> - 音楽をスキップします。</li>
+                <li><a href="index.html?section=pause">/music_pause</a> - 再生中の音楽を一時停止します。</li>
+                <li><a href="index.html?section=repause">/music_repause</a> - 一時停止を解除します。</li>
+                <li><a href="index.html?section=queue">/music_queue</a> - 再生待ちのトラックを表示します。</li>
+                <li><a href="index.html?section=now">/music_now</a> - 現在再生中のトラック情報を表示します。</li>
+                <li><a href="index.html?section=add_queue">/music_addqueue</a> - トラックを再生待ちリストに追加します。</li>
+                <li><a href="index.html?section=leave">/music_leave</a> - ボイスチャンネルから退出します。</li>
+                <li><a href="index.html?section=music_loop">/music_loop</a> - 音楽のループ設定をします。</li>
+                <li><a href="index.html?section=operation">/music_operation</a> - 音楽トラックの特定の時間にスキップします。</li>
+                <li><a href="index.html?section=volume">/music_volume</a> - 音楽再生時の音量を調整します。</li>
+            </ul>
+        </div>
+
+        <div class="command-box" data-section="clear">
+            <div class="command-header">サーバー関連</div>
+            <ul class="command-list">
+                <li><a href="index.html?section=clear">/server_clear</a> - 指定した数のメッセージを削除します。</li>
+                <li><a href="index.html?section=info">/server_info</a> - サーバーの情報を表示します。</li>
+                <li><a href="index.html?section=avatar">/server_avatar</a> - ユーザーのアイコンを表示。</li>
+                <li><a href="index.html?section=count">/server_count</a> - メッセージ数を計測します。</li>
+                <li><a href="index.html?section=slow">/server_slow</a> - 低速モードを設定します。</li>
+                <li><a href="index.html?section=unslow">/server_unslow</a> - 低速モードを解除します。</li>
+                <li><a href="index.html?section=top">/server_topmessage</a> - チャンネルの一番最初のメッセージリンクを送信します。</li>
+                <li><a href="index.html?section=userinfo">/server_userinfo</a> - サーバー内のユーザーの情報を表示します。</li>
+            </ul>
+        </div>
+
+        <div class="command-box" data-section="weathermain">
+            <div class="command-header">便利機能</div>
+            <ul class="command-list">
+                <li><a href="index.html?section=weathermain">/weather main</a> - 指定した場所の天気予報を表示します。</li>
+                <li><a href="index.html?section=weatherother">/weather other</a> - 指定した場所の天気予報を表示します。</li>
+            </ul>
+        </div>
+
+        <div class="command-box" data-section="job">
+            <div class="command-header">お金 - DBC</div>
+            <ul class="command-list">
+                <li><a href="index.html?section=job">/money_job</a> - お金を稼ぎます。</li>
+                <li><a href="index.html?section=moneynow">/money_now</a> - 現在のお金を表示します。</li>
+                <li><a href="index.html?section=transfer">/money_transfer</a> - お金を転送します。</li>
+            </ul>
+        </div>
+
+        <div class="command-box" data-section="edit">
+            <div class="command-header">編集</div>
+            <ul class="command-list">
+                <li><a href="index.html?section=edit">/edit</a> - 指定した内容を編集します。</li>
+                <li><a href="index.html?section=add">/add</a> - 新しい項目を追加します。</li>
+                <li><a href="index.html?section=remove">/remove</a> - 指定した項目を削除します。</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const section = urlParams.get('section');
+
+            if (section) {
+                // 検索クエリがある場合はそのセクションを表示
+                const commandBoxes = document.querySelectorAll('.command-box');
+                commandBoxes.forEach(box => {
+                    if (box.dataset.section.toLowerCase() === section.toLowerCase()) {
+                        box.classList.remove('fade-out');
+                        box.classList.add('fade-in');
+                    } else {
+                        box.classList.remove('fade-in');
+                        box.classList.add('fade-out');
+                    }
+                });
+            }
+        });
+
+        function performSearch() {
+            const searchQuery = document.getElementById('search-box').value.toLowerCase();
+            const commandBoxes = document.querySelectorAll('.command-box');
+            const searchingMessage = document.getElementById('searching-message');
+
+            searchingMessage.classList.add('show');
+
+            setTimeout(() => {
+                let found = false;
+                commandBoxes.forEach(box => {
+                    const section = box.dataset.section.toLowerCase();
+                    if (section.includes(searchQuery)) {
+                        box.classList.remove('fade-out');
+                        box.classList.add('fade-in');
+                        found = true;
+                    } else {
+                        box.classList.remove('fade-in');
+                        box.classList.add('fade-out');
+                    }
+                });
+
+                if (!found) {
+                    searchingMessage.textContent = '検索結果が見つかりませんでした。';
+                } else {
+                    searchingMessage.textContent = '';
+                }
+
+                searchingMessage.classList.remove('show');
+            }, 300); // 遅延させて検索結果を表示
+        }
+    </script>
+</body>
+</html>

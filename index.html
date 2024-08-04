@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOME-BOT</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Centering the button */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Adjust this height as needed */
+            text-align: center;
+        }
+        
+        .header-title {
+            text-align: center;
+            cursor: pointer;
+            font-size: 2em;
+            text-decoration: none;
+            color: #fff; /* White color for both themes */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glowing effect for visibility */
+        }
+
+        .intro-button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .intro-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .terms-policy-frame {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .terms-policy-frame a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .terms-policy-frame a:hover {
+            text-decoration: underline;
+        }
+
+        /* Other styles... */
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="header-title">DOME-BOT</a>
+        <div class="header-controls">
+            <span class="theme-toggle-label">テーマ切り替え</span>
+            <label class="switch">
+                <input type="checkbox" id="mode-toggle">
+                <span class="slider"></span>
+            </label>
+            <div class="menu-container">
+                <input type="checkbox" class="menu-toggle" id="menu-toggle">
+                <label for="menu-toggle" class="menu-icon">
+                    &#9776;
+                </label>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="index.html?section=commands">コマンド</a></li>
+                        <li><a href="index.html?section=support">サポート</a></li>
+                        <li><a href="index.html?section=contact">コンタクト</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="fade in">
+    </main>
+
+    <footer>
+        <div class="terms-policy-frame">
+            <a href="index.html?section=terms">利用規約</a>
+            <span>|</span>
+            <a href="index.html?section=policy">プライバシーポリシー</a>
+        </div>
+        <p>&copy; 2024 sift732 All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.getElementById('main-content');
+            const urlParams = new URLSearchParams(window.location.search);
+            const section = urlParams.get('section');
+            const menuToggle = document.getElementById('menu-toggle');
+            const menu = document.querySelector('.menu');
+            const menuContainer = document.querySelector('.menu-container');
+            const themeToggle = document.getElementById('mode-toggle');
+    
+            function loadContent(content) {
+                mainContent.classList.remove('fade-in'); // まずはフェードアウト
+                setTimeout(() => {
+                    mainContent.innerHTML = content;
+                    mainContent.classList.add('fade-in'); // 新しい内容をフェードイン
+                }, 500); // アニメーションの時間と一致させる
+            }
+    
+            function fetchContent(urls) {
+                const fetchPromises = urls.map(url => 
+                    fetch(url).then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                );
+    
+                return Promise.any(fetchPromises);
+            }
+    
+            const commonSections = [
+                'play', 'pause', 'repause', 'skip', 'queue', 'now', 'add_queue', 'leave',
+                'music_loop', 'operation', 'volume', 'clear', 'info', 'avatar', 'count',
+                'slow', 'unslow', 'top', 'userinfo', 'weathermain', 'weatherother', 'job',
+                'moneynow', 'average'
+            ];
+    
+            if (section) {
+                if (commonSections.includes(section)) {
+                    fetchContent([
+                        `commands/${section}.html`,
+                        `server/${section}.html`,
+                        `convenience/${section}.html`,
+                        `money/${section}.html`
+                    ])
+                    .then(data => loadContent(data))
+                    .catch(error => {
+                        console.error('Error loading content:', error);
+                        loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                    });
+                } else {
+                    switch (section) {
+                        case 'commands':
+                            fetch('menu/command.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                        case 'support':
+                            fetch('support/support.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                        case 'contact':
+                            fetch('contact.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                        case 'terms':
+                            fetch('home/terms.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                        case 'policy':
+                            fetch('home/policy.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading content:', error);
+                                    loadContent('<p>コンテンツの読み込みに失敗しました。</p>');
+                                });
+                            break;
+                        default:
+                            fetch('404.html')
+                                .then(response => response.text())
+                                .then(data => loadContent(data))
+                                .catch(error => {
+                                    console.error('Error loading 404 page:', error);
+                                    loadContent('<p>指定されたセクションが見つかりません。</p>');
+                                });
+                            break;
+                    }
+                }
+            } else {
+                // セクションが指定されていない場合の初期画面
+                mainContent.innerHTML = `
+                    <div class="center-container">
+                        <a href="https://discord.com/oauth2/authorize?client_id=1264166436612472832&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.gg%2FmWBwH2yyAF&integration_type=0&scope=bot+gdm.join+applications.commands" target="_blank" class="intro-button">導入する</a>
+                    </div>
+                `;
+            }
+    
+            menuToggle.addEventListener('change', () => {
+                if (menuToggle.checked) {
+                    menu.style.display = 'block';
+                } else {
+                    menu.style.display = 'none';
+                }
+            });
+    
+            // Load and apply theme from local storage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.classList.add(savedTheme);
+                themeToggle.checked = savedTheme === 'dark-mode';
+            }
+    
+            // Handle dark mode toggle
+            themeToggle.addEventListener('change', function() {
+                document.body.classList.remove('dark-mode', 'light-mode'); // Remove both themes
+                document.body.classList.add(this.checked ? 'dark-mode' : 'light-mode'); // Add the selected theme
+                localStorage.setItem('theme', this.checked ? 'dark-mode' : 'light-mode'); // Save the selected theme to local storage
+            });
+    
+            // Set initial theme class based on local storage value or default to light mode
+            if (!document.body.classList.contains('dark-mode') && !document.body.classList.contains('light-mode')) {
+                document.body.classList.add('light-mode');
+            }
+    
+            // Hide the menu on page load if not checked
+            if (!menuToggle.checked) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

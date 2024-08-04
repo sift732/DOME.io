@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/userinfo コマンド - DOME-BOT</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- 親ディレクトリの styles.css をリンク -->
+    <style>
+        /* userinfo.html 専用のスタイル */
+        .command-detail {
+            padding: 20px;
+        }
+
+        .command-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .command-description {
+            margin-bottom: 20px;
+        }
+
+        .command-example {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-left: 4px solid #1a73e8;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+
+        .command-info {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        /* テーブルのスタイル */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* ダークテーマ用のスタイル */
+        .dark-mode .command-detail {
+            background-color: #1e1e1e; /* ダークテーマのコマンド詳細背景色 */
+            color: #e0e0e0; /* ダークテーマの文字色 */
+        }
+
+        .dark-mode .command-example {
+            background-color: #333333; /* ダークテーマのコマンド例背景色 */
+            color: #e0e0e0; /* ダークテーマのコマンド例文字色 */
+        }
+
+        .dark-mode .note {
+            background-color: #444c5c; /* ダークテーマの注意背景色 */
+            border: 1px solid #2b3444; /* ダークテーマの注意ボーダー色 */
+            color: #e0e0e0; /* ダークテーマの注意文字色 */
+        }
+
+        .dark-mode th {
+            background-color: #333333; /* ダークテーマのテーブルヘッダー背景色 */
+            color: #e0e0e0; /* ダークテーマのテーブルヘッダー文字色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="command-detail">
+        <div class="command-header">/server_userinfo</div>
+        <div class="command-description">
+            `/userinfo` コマンドは、指定したユーザーの詳細な情報を表示します。このコマンドを使うことで、ユーザーのプロファイル、役職、参加日などを簡単に確認できます。
+        </div>
+
+        <div class="command-info">
+            <strong>使い方</strong>
+            <div class="command-example">
+                /server_userinfo [ユーザー]
+            </div>
+            `ユーザー` には、ユーザーIDやメンションを指定できます。指定されたユーザーの情報が表示されます。
+        </div>
+
+        <div class="note">
+            <strong>注意：</strong> 指定するユーザーがサーバーに存在しない場合、エラーメッセージが表示されます。また、情報の表示には適切な権限が必要です。
+        </div>
+
+        <div class="command-info">
+            <strong>例</strong>
+            <div class="command-example">
+                /server_userinfo @ユーザー名
+            </div>
+            上記の例では、`@ユーザー名` のユーザーの詳細な情報が表示されます。
+            <br>
+            <div class="command-example">
+                /server_userinfo
+            </div>
+            上記の例ではユーザーが指定されていないため実行者のユーザーの情報が表示されます。
+        </div>
+
+        <!-- ユーザー情報を表示するテーブル -->
+        <div class="command-info">
+            <strong>ユーザー情報:</strong>
+            <table>
+                <thead>
+                    <tr>
+                        <th>項目</th>
+                        <th>内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ユーザー名</td>
+                        <td>ユーザー名が表示されます</td>
+                    </tr>
+                    <tr>
+                        <td>ユーザーID</td>
+                        <td>ユーザーIDが表示されます</td>
+                    </tr>
+                    <tr>
+                        <td>サーバー参加日</td>
+                        <td>ユーザーがサーバーに参加した日を表示します</td>
+                    </tr>
+                    <tr>
+                        <td>アカウント作成日</td>
+                        <td>アカウントが作成された日を表示します</td>
+                    <tr>
+                        <td>ロール一覧</td>
+                        <td>付与されているロールを表示します</td>
+                    </tr>
+                    <tr>
+                        <td>ロール数</td>
+                        <td>付与されているロール数を表示します</td>
+                    <tr>
+                        <td>サーバー参加経過日</td>
+                        <td>ユーザーがサーバーに参加し何日経過したかを表示します</td>
+                    </tr>
+                    <tr>
+                        <td>ユーザーがBOTか</td>
+                        <td>ユーザーがBOTかを判断します</td>
+                    </tr>
+                    <tr>
+                        <td>ステータス</td>
+                        <td>オンラインか退席中か取り込み中かオフラインかを判断します</td>
+                    </tr>
+                    <tr>
+                        <td>ログインデバイス</td>
+                        <td>ログインデバイスを判断します(不正確)</td>
+                    </tr>
+                    <tr>
+                        <td>アクティビティ</td>
+                        <td>何をプレイしているか判断します</td>
+                    </tr>
+                    </tr>
+                    </tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

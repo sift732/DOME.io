@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/leave コマンド - DOME-BOT</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- 親ディレクトリの styles.css をリンク -->
+    <style>
+        /* leave.html 専用のスタイル */
+        .command-detail {
+            padding: 20px;
+        }
+
+        .command-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .command-description {
+            margin-bottom: 20px;
+        }
+
+        .command-example {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-left: 4px solid #1a73e8;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+
+        .command-info {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        /* ダークテーマ用のスタイル */
+        .dark-mode .command-detail {
+            background-color: #1e1e1e; /* ダークテーマのコマンド詳細背景色 */
+            color: #e0e0e0; /* ダークテーマの文字色 */
+        }
+
+        .dark-mode .command-example {
+            background-color: #333333; /* ダークテーマのコマンド例背景色 */
+            color: #e0e0e0; /* ダークテーマのコマンド例文字色 */
+        }
+
+        .dark-mode .note {
+            background-color: #444c5c; /* ダークテーマの注意背景色 */
+            border: 1px solid #2b3444; /* ダークテーマの注意ボーダー色 */
+            color: #e0e0e0; /* ダークテーマの注意文字色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="command-detail">
+        <div class="command-header">/music_leave</div>
+        <div class="command-description">
+            `/music_leave` コマンドは、BOTがボイスチャンネルから退出するためのコマンドです。このコマンドを使用することで、BOTがボイスチャンネルから退出し、再生していた音楽も停止しプレイヤーが破棄されます
+        </div>
+
+        <div class="command-info">
+            <strong>使い方</strong>
+            <div class="command-example">
+                /music_leave
+            </div>
+            コマンドを実行すると、BOTが現在参加しているボイスチャンネルから退出します。
+        </div>
+
+        <div class="note">
+            <strong>注意：</strong> BOTがボイスチャンネルに参加している場合にのみ、退出できます。音声チャンネルに参加していない場合はエラーが表示されます。再生中にサーバーが再起動した場合一時的に利用できなくなります
+        </div>
+
+        <div class="command-info">
+            <strong>例</strong>
+            <div class="command-example">
+                /music_leave
+            </div>
+            上記の例では、BOTが音声チャンネルから退出します。
+        </div>
+    </div>
+</body>
+</html>

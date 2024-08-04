@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja" class="light-mode"> <!-- 初期はライトモード -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コンタクト - DOME-BOT</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- スタイルシートへのリンク -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* ホワイトモードの背景色 */
+            color: #333; /* ホワイトモードの文字色 */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1.contact-header {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #000; /* ホワイトモードの文字色を黒に設定 */
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        .sns-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px; /* ボックス間の距離を狭く設定 */
+        }
+
+        .sns-box {
+            background-color: #ffffff; /* ボックスの背景色 */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-sizing: border-box;
+            width: calc(33.333% - 20px); /* 各ボックスの幅を均等に設定 */
+            height: 250px; /* 固定の高さを設定 */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 画像とテキストを中央揃え */
+            justify-content: space-between;
+            aspect-ratio: 1 / 1; /* 正方形を維持 */
+        }
+
+        .sns-box img {
+            width: 80px; /* 画像の固定幅を設定 */
+            height: 80px; /* 画像の固定高さを設定 */
+        }
+
+        .sns-box h2 {
+            font-size: 1.2em; /* ボックス内の見出しの文字サイズ */
+        }
+
+        .button {
+            display: inline-block;
+            font-size: 1em; /* ボタンの文字サイズ */
+            color: #ffffff; /* ボタンの文字色 */
+            background-color: #3498db; /* ボタンの背景色 */
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            width: 100%; /* ボタンの幅をボックスの幅に合わせる */
+            text-align: center; /* ボタン内のテキストを中央揃え */
+            height: 40px; /* ボタンの固定高さ */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box; /* ボックスサイズにパディングを含める */
+        }
+
+        .button:hover {
+            background-color: #2980b9; /* ボタンのホバー時の背景色 */
+        }
+
+        .contact-info {
+            background-color: #ffffff; /* ボックスの背景色 */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 画像とテキストを中央揃え */
+            justify-content: space-between;
+            height: 250px; /* 固定の高さを設定 */
+            aspect-ratio: 1 / 1; /* 正方形を維持 */
+        }
+
+        .contact-info img {
+            width: 80px; /* 画像の固定幅を設定 */
+            height: 80px; /* 画像の固定高さを設定 */
+            object-fit: cover; /* 正方形を維持 */
+        }
+
+        .contact-info h2 {
+            font-size: 1.2em; /* ボックス内の見出しの文字サイズ */
+        }
+
+        /* ダークテーマ用スタイル */
+        body.dark-mode {
+            background-color: #6c6c6c; /* ダークモードの背景色 */
+            color: #fff; /* ダークモードの文字色 */
+        }
+
+        .dark-mode .contact-info, .dark-mode .sns-box, .dark-mode .email-box {
+            background-color: #333333; /* ボックスの背景色 */
+            border: 1px solid #555555; /* ボックスのボーダー色 */
+        }
+
+        .dark-mode .contact-info h2, .dark-mode .contact-info p, .dark-mode .sns-box a, .dark-mode .email-box a {
+            color: #fff; /* ボックス内の文字色 */
+        }
+
+        .dark-mode .button {
+            background-color: #1e90ff; /* ボタンの背景色 */
+        }
+
+        .dark-mode .button:hover {
+            background-color: #104e8b; /* ボタンのホバー時の背景色 */
+        }
+
+        .dark-mode h1.contact-header {
+            color: #fff; /* ダークモードの文字色を白に設定 */
+        }
+
+        /* モバイル版スタイル */
+        @media (max-width: 600px) {
+            .sns-container {
+                flex-direction: column;
+                gap: 10px; /* ボックス間の隙間を設定 */
+            }
+
+            .sns-box {
+                width: 100%; /* モバイル版での幅を100%に設定 */
+                height: 200px; /* モバイル版での高さを設定 */
+                aspect-ratio: 1 / 1; /* モバイルでも正方形を維持 */
+            }
+
+            .contact-info {
+                width: 100%; /* モバイル版での幅を100%に設定 */
+                height: 200px; /* モバイル版での高さを設定 */
+                aspect-ratio: 1 / 1; /* モバイルでも正方形を維持 */
+                padding: 10px; /* パディングを調整 */
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .contact-info h2 {
+                font-size: 1.2em;
+            }
+
+            .contact-info p {
+                font-size: 0.9em;
+            }
+
+            .email-box {
+                width: 100%; /* ボックスの幅を100%に設定 */
+                max-width: 300px;
+                margin: 0 auto;
+                display: flex; /* 内部要素の配置を制御 */
+                justify-content: center; /* ボタンを中央に配置 */
+            }
+
+            .email-box .button {
+                width: 100%; /* ボタンの幅をボックスの幅に合わせる */
+                height: 40px; /* ボタンの高さ */
+                box-sizing: border-box; /* ボックスサイズにパディングを含める */
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1 class="contact-header">コンタクト</h1>
+        <section class="sns-container">
+            <div class="sns-box">
+                <img src="image/github.png" alt="GitHub">
+                <h2>GitHub</h2>
+                <a href="https://github.com/sift732" class="button" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div class="sns-box">
+                <img src="image/discord.png" alt="Discord">
+                <h2>Discord</h2>
+                <a href="https://discord.gg/mWBwH2yyAF" class="button" target="_blank" rel="noopener noreferrer">Discordサーバー</a>
+            </div>
+            <div class="sns-box">
+                <img src="image/twitter.png" alt="Twitter">
+                <h2>Twitter</h2>
+                <a href="https://x.com/DomeContac9088" class="button" target="_blank" rel="noopener noreferrer">Twitter</a>
+            </div>
+        </section>
+        <section class="contact-info">
+            <img src="image/email.png" alt="Email">
+            <h2>メールでのお問い合わせ</h2>
+            <div class="email-box">
+                <a href="mailto:contactdomebot1234@gmail.com" class="button">メールを送信</a>
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>
