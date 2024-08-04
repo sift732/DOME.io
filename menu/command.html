@@ -201,58 +201,5 @@
             </ul>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const section = urlParams.get('section');
-
-            if (section) {
-                // 検索クエリがある場合はそのセクションを表示
-                const commandBoxes = document.querySelectorAll('.command-box');
-                commandBoxes.forEach(box => {
-                    if (box.dataset.section.toLowerCase() === section.toLowerCase()) {
-                        box.classList.remove('fade-out');
-                        box.classList.add('fade-in');
-                    } else {
-                        box.classList.remove('fade-in');
-                        box.classList.add('fade-out');
-                    }
-                });
-            }
-        });
-
-        function performSearch() {
-            const searchQuery = document.getElementById('search-box').value.toLowerCase();
-            const commandBoxes = document.querySelectorAll('.command-box');
-            const searchingMessage = document.getElementById('searching-message');
-
-            searchingMessage.classList.add('show');
-
-            setTimeout(() => {
-                let found = false;
-                commandBoxes.forEach(box => {
-                    const section = box.dataset.section.toLowerCase();
-                    if (section.includes(searchQuery)) {
-                        box.classList.remove('fade-out');
-                        box.classList.add('fade-in');
-                        found = true;
-                    } else {
-                        box.classList.remove('fade-in');
-                        box.classList.add('fade-out');
-                    }
-                });
-
-                if (!found) {
-                    searchingMessage.textContent = '検索結果が見つかりませんでした。';
-                } else {
-                    searchingMessage.textContent = '';
-                }
-
-                searchingMessage.classList.remove('show');
-            }, 300); // 遅延させて検索結果を表示
-        }
-    </script>
 </body>
 </html>
