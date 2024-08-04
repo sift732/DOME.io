@@ -87,62 +87,12 @@
             }
         }
 
-        .search-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .search-box {
-            width: 250px;
-            padding: 10px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .search-button {
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            background-color: #1a73e8;
-            color: white;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        .search-button:hover {
-            background-color: #1558d6;
-        }
-
-        .fade-in {
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .fade-out {
-            opacity: 0;
-        }
-
-        .searching-message {
-            display: none;
-            text-align: center;
-            font-size: 1.2em;
-            color: #666;
-        }
-
         .show {
             display: block;
         }
     </style>
 </head>
 <body>
-    <div class="search-container">
-        <input type="text" id="search-box" class="search-box" placeholder="コマンドを検索...">
-        <button class="search-button" onclick="performSearch()">検索</button>
-    </div>
-    <div id="searching-message" class="searching-message">検索中...</div>
     <div id="command-content" class="command-container">
         <div class="command-box" data-section="play">
             <div class="command-header">音楽</div>
